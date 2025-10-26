@@ -43,6 +43,8 @@ extern bool gPrintActivity;
 extern int gK;
 extern int gN;
 extern int gC;
+extern int gX;
+extern int gY;
 
 extern int gNodes;
 

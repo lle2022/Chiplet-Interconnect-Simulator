@@ -60,6 +60,10 @@ void HexMesh::_ComputeSize(const Configuration &config)
   // For Channels, each node can have up to 6 channels.
   // Safe thing to do is just take Nodes*6 for inter-router
   _channels = 6*_nodes;
+
+  // Allocate Global Variables for use later
+  gX = _x;
+  gY = _y;
 }
 
 void HexMesh::RegisterRoutingFunctions() {

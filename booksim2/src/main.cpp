@@ -82,6 +82,8 @@ bool gPrintActivity;
 int gK;//radix
 int gN;//dimension
 int gC;//concentration
+int gX;//HexMesh X Width
+int gY;//HexMesh Y Width
 
 int gNodes;
 
