@@ -29,6 +29,7 @@
 #define _HEXMESH_HPP_
 
 #include "network.hpp"
+#include "routefunc.hpp"
 
 class HexMesh : public Network {
   int _x;
@@ -50,8 +51,12 @@ public:
 
   int GetX( ) const;
   int GetY( ) const;
+  static int DirNode(int node, int dir, int x, int y); 
 
   double Capacity( ) const;
 };
 
+// Routing Functions
+void chaos_hexmesh( const Router *r, const Flit *f, int in_channel,
+		    OutputSet *outputs, bool inject );
 #endif

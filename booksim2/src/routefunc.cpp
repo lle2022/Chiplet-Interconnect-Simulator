@@ -49,8 +49,7 @@
 #include "tree4.hpp"
 #include "qtree.hpp"
 #include "cmesh.hpp"
-
-
+#include "hexmesh.hpp"
 
 map<string, tRoutingFunction> gRoutingFunctionMap;
 
@@ -1914,103 +1913,6 @@ void chaos_mesh( const Router *r, const Flit *f,
 
 //=============================================================
 
-void chaos_hexmesh( const Router *r, const Flit *f, 
-		  int in_channel, OutputSet *outputs, bool inject )
-{
-  outputs->Clear( );
-
-  if(inject) {
-    outputs->AddRange(-1, 0, 0);
-    return;
-  }
-
-  // Get Current and Target Node Numbers
-  int cur = r->GetID( );
-  int dest = f->dest;
-  
-  // Eject if we reached target
-  if (cur == dest) {
-    // Ejection Channel should be the 6th channel
-    outputs->AddRange( 6, 0, 0 );
-    // Exit once this has been found
-    return;
-  }
-
-  // Get Current and Target X/Y coords
-  int curX = cur % gX;
-  int curY = cur / gX;
-  int destX = dest % gX;
-  int destY = dest / gX;
-  
-  // Changes required to reach target
-  int dX = destX - curX;
-  int dY = destY - curY;
-
-
-  //Staggered Row implemenetation. so need to know parity
-  bool even = ((curY % 2) == 0);
-
-  // From HexMesh Implementation in hexmesh.cpp:
-  // 0 - East, 1 - NorthEast, 2 - NorthWest,
-  // 3 - West, 4 - SouthWest, 5 - SouthEast
-
-  // East always (1,0)
-  // NorthEast is [even] (0,1) [odd] (1,1)
-  // NorthWest is [even] (-1,1) [odd] (0,1)
-  // West always (-1,0)
-  // SouthWest is [even] (-1,-1) [odd] (0, -1)
-  // SouthEast is [even] (0, -1) [odd] (1, -1)
-
-  // So if theres a dx of 1 east, dx of -1 west
-  if (dX > 0) {
-    outputs->AddRange(0, 0, 0); // East
-  } else if (dX < 0) {
-    outputs->AddRange(3, 0, 0); // West
-  }
-
-  // And if theres a dy of 1 then its north, dy of -1, then it's south.
-  // And the dx/dy in these cases depends on parity
-  if (dY > 0) {
-    if (even) {
-      if (dX >= 0) {
-	// [Even] (0,1) = NorthEast
-	outputs->AddRange(1, 0, 0);
-      } else {
-	// [Even] (-1,1) = NorthWest
-	outputs->AddRange(2, 0, 0);
-      }
-    } else {
-      if (dX > 0) {
-	// [Odd] (1,1) = NorthEast
-	outputs->AddRange(1, 0, 0);
-      } else {
-	// [Odd] (0,1) = NorthWest
-	outputs->AddRange(2, 0, 0);
-      }
-    }
-  } else if (dY < 0) {
-    if (even) {
-      if (dX >= 0) {
-	// [Even] (0,-1) = SouthEast
-	outputs->AddRange(5, 0, 0);
-      } else {
-	// [Even] (-1,-1) = SouthWest
-	outputs->AddRange(4, 0, 0);
-      }
-    } else {
-      if (dX > 0) {
-	// [Odd] (1,-1) = SouthEast
-	outputs->AddRange(5, 0, 0);
-      } else {
-	// [Odd] (0,-1) = SouthWest
-	outputs->AddRange(4, 0, 0);
-      }
-    }
-  } 
-}
-
-//=============================================================
-
 void InitializeRoutingMap( const Configuration & config )
 {
 
@@ -2093,5 +1995,4 @@ void InitializeRoutingMap( const Configuration & config )
 
   gRoutingFunctionMap["chaos_mesh"]  = &chaos_mesh;
   gRoutingFunctionMap["chaos_torus"] = &chaos_torus;
-  gRoutingFunctionMap["chaos_hexmesh"] = &chaos_hexmesh;
 }
