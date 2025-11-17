@@ -1,0 +1,29 @@
+// Topology
+topology = hexmesh;
+x = 8;
+y = 8;
+// Routing
+routing_function = chaos;
+// Router pipeline for 3 Cycles
+routing_delay = 0;
+vc_alloc_delay = 1;
+sw_alloc_delay = 1;
+st_prepare_delay = 0;
+st_final_delay = 1;  
+credit_delay = 0;
+// Flow control
+num_vcs = 8;
+vc_buf_size = 8;
+// Allocators  
+vc_allocator = islip;  
+sw_allocator = islip;  
+arb_type = round_robin;  
+// Traffic
+traffic = uniform;
+packet_size = 1;  
+injection_rate = 0.001;
+// Simulation
+sim_type = latency;  
+sample_period = 10000;  
+max_samples = 10;  
+warmup_periods = 3;  

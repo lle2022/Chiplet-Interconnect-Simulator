@@ -318,7 +318,6 @@ int HexMesh::DirNode(int node, int dir, int x, int y)
 void chaos_hexmesh( const Router *r, const Flit *f, 
 		  int in_channel, OutputSet *outputs, bool inject )
 {
-  cout << "HEXMESH ROUTER" << endl;
   outputs->Clear( );
 
   if(inject) {

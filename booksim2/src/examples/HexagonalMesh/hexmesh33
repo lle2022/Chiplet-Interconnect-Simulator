@@ -1,0 +1,11 @@
+// Topology
+topology = hexmesh;
+x = 3;
+y = 3;
+// Routing
+routing_function = chaos;
+// Flow control
+num_vcs = 2;
+// Traffic
+traffic = uniform;
+injection_rate = 0.15;
