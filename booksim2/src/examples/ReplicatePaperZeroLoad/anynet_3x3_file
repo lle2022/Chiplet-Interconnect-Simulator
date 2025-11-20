@@ -1,0 +1,11 @@
+router 0 node 0 node 1 router 1 27 router 3 27
+router 1 node 2 node 3 router 0 27 router 2 27 router 4 27
+router 2 node 4 node 5 router 1 27 router 5 27
+
+router 3 node 6 node 7 router 0 27 router 4 27 router 6 27
+router 4 node 8 node 9 router 1 27 router 3 27 router 5 27 router 7 27
+router 5 node 10 node 11 router 2 27 router 4 27 router 8 27
+
+router 6 node 12 node 13 router 3 27 router 7 27
+router 7 node 14 node 15 router 4 27 router 6 27 router 8 27
+router 8 node 16 node 17 router 5 27 router 7 27

@@ -152,11 +152,11 @@ void HexMesh::_BuildNet(const Configuration &config)
 
       //set input channel latency
       if(use_noc_latency){
-	_chan[inputChannel]->SetLatency(latency);
-	_chan_cred[inputChannel]->SetLatency(latency);
+	_chan[inputChannel]->SetLatency( latency );
+	_chan_cred[inputChannel]->SetLatency( latency );
       } else {
-	_chan[inputChannel]->SetLatency(1);
-	_chan_cred[inputChannel]->SetLatency(1);
+	_chan[inputChannel]->SetLatency( 27 );
+	_chan_cred[inputChannel]->SetLatency( 27 );
       }
       //get the output channel number
       outputChannel = _DirChannel( node, dir );
@@ -170,8 +170,8 @@ void HexMesh::_BuildNet(const Configuration &config)
 	_chan[outputChannel]->SetLatency( latency );
 	_chan_cred[outputChannel]->SetLatency( latency );
       } else {
-	_chan[outputChannel]->SetLatency( 1 );
-	_chan_cred[outputChannel]->SetLatency( 1 );
+	_chan[outputChannel]->SetLatency( 27 );
+	_chan_cred[outputChannel]->SetLatency( 27 );
       }
     }
     // Add in consideration for input channel
@@ -179,8 +179,8 @@ void HexMesh::_BuildNet(const Configuration &config)
     // Always add Ejection Channel Last
     _routers[node]->AddOutputChannel( _eject[node], _eject_cred[node] );
     // Channel Latencies here set to 1
-    _inject[node]->SetLatency( 1 );
-    _eject[node]->SetLatency( 1 );
+    _inject[node]->SetLatency( 27 );
+    _eject[node]->SetLatency( 27 );
 
     // Output Debug Info
     cout << router_debug.str() << endl;

@@ -20,7 +20,7 @@ sw_allocator = islip;
 arb_type = round_robin;
 // Traffic
 traffic = uniform;
-packet_size = 1;  
+packet_size = 8;  
 injection_rate = 0.001;
 // Simulation
 sim_type = latency;  
