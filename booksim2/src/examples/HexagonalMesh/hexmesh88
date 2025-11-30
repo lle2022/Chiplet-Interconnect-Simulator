@@ -32,7 +32,7 @@ topology = hexmesh;
 x = 8;
 y = 8;
 // Routing
-routing_function = chaos;
+routing_function = dor;
 // Flow control
 num_vcs = 2;
 // Traffic

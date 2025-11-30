@@ -32,7 +32,7 @@ topology = mesh;
 k = 8;
 n = 2;
 // Routing
-routing_function = chaos;
+routing_function = dor;
 // Flow control
 num_vcs = 2;
 // Traffic
