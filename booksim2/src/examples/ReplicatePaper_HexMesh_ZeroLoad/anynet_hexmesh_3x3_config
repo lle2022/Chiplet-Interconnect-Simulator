@@ -47,7 +47,7 @@ sw_allocator = separable_input_first;
 alloc_iters  = 1;
 
 routing_function = min;
-network_file = examples/ReplicatePaperZeroLoad/anynet_file;
+network_file = examples/ReplicatePaper_HexMesh_ZeroLoad/anynet_hexmesh_3x3_file;
 traffic = uniform;
 packet_size = 1;  
 injection_rate = 0.001;
