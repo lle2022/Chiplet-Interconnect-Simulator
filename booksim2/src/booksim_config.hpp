@@ -42,11 +42,19 @@ public:
 #ifndef _POWER_CONFIG_HPP_
 #define _POWER_CONFIG_HPP_
 
+#ifndef _INTERCONNECT_CONFIG_HPP_
+#define _INTERCONNECT_CONFIG_HPP_
 #include "config_utils.hpp"
 
 class PowerConfig : public Configuration {
 public:
   PowerConfig( );
+
+};
+
+class Interconnect_Config : public Configuration {
+public:
+  Interconnect_Config( );
 
 };
 
